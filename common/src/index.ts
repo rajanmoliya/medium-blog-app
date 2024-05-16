@@ -15,7 +15,6 @@ export const signinInput = z.object({
 export const createPostInput = z.object({
   title: z.string(),
   content: z.string(),
-  published: z.boolean(),
 });
 
 export const updatePostInput = z.object({

@@ -1,3 +1,4 @@
+import AllBlogsSkeleton from "../components/AllBlogsSkeleton";
 import Appbar from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../hooks";
@@ -6,7 +7,18 @@ export default function Blogs() {
   const { loading, blogs } = useBlogs();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <Appbar />
+        <div className="flex justify-center">
+          <div>
+            <AllBlogsSkeleton />
+            <AllBlogsSkeleton />
+            <AllBlogsSkeleton />
+          </div>
+        </div>
+      </>
+    );
   }
   return (
     <>
