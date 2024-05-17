@@ -4,7 +4,7 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import { sign, verify } from "hono/jwt";
 
 //  not the ideal way (use monorepo instead)
-import { createPostInput, updatePostInput } from "../../../common/src/index";
+import { createPostInput, updatePostInput } from "../../../frontend/common/src/index";
 
 export const blogRouter = new Hono<{
   Bindings: {

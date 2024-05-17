@@ -4,7 +4,7 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import { sign } from "hono/jwt";
 
 //  not the ideal way (use monorepo instead)
-import { signupInput, signinInput } from "../../../common/src/index";
+import { signupInput, signinInput } from "../../../frontend/common/src/index";
 
 export const userRouter = new Hono<{
   Bindings: {

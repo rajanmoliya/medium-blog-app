@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
 // not the ideal way to import
-import { SignupInput } from "../../../common/src/index";
+import { SignupInput } from "../../../frontend/common/src/index";
 import { useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
