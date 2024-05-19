@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface BlogCardProps {
@@ -5,7 +6,7 @@ interface BlogCardProps {
   authorName: string;
   title: string;
   content: string;
-  publishedDate: string;
+  publishedDate: React.ReactNode;
 }
 
 export function BlogCard({
@@ -20,7 +21,11 @@ export function BlogCard({
       <div className=" p-2 w-screen max-w-screen-md cursor-pointer">
         <div>
           <Avatar name={authorName} />{" "}
-          <span className=" font-light">{authorName}</span> &#183;{" "}
+          <span className=" font-light">
+            {authorName.charAt(0).toUpperCase() + authorName.slice(1) ||
+              "Anonymous"}
+          </span>{" "}
+          &#183;{" "}
           <span className=" text-slate-500 text-sm font-thin">
             {publishedDate}
           </span>

@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "./Button";
 // not the ideal way to import
 import { SignupInput } from "../../../frontend/common/src/index";
 import { useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import Spinner from "./Spinner";
 
 export default function Auth({ type }: { type: string }) {
   const [postInput, setPostInput] = useState<SignupInput>({
@@ -12,10 +12,15 @@ export default function Auth({ type }: { type: string }) {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function sendRequest() {
+    setLoading(true);
+    setErrorMessage(""); // Clear any previous error message
+
     try {
       const response = await axios.post(
         `${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`,
@@ -23,10 +28,24 @@ export default function Auth({ type }: { type: string }) {
       );
 
       const jwt = response.data.jwt;
+      const name = response.data.name;
       localStorage.setItem("token", jwt);
+      localStorage.setItem("name", name ? name : "Anonymous");
+
+      setLoading(false);
+
       navigate("/blogs");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      setLoading(false);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage(error.response.data.error);
+      }
     }
   }
 
@@ -76,7 +95,7 @@ export default function Auth({ type }: { type: string }) {
           </label>
           <br />
           <input
-            className=" w-full p-2 border rounded-md my-3 bg-gray-50"
+            className=" w-full p-2 border rounded-md my-3 bg-gray-50 "
             placeholder="m@example.com"
             type="text"
             name="email"
@@ -105,11 +124,20 @@ export default function Auth({ type }: { type: string }) {
               });
             }}
           />
+          <div className="text-red-500 text-center">{errorMessage}</div>
           <div className="my-3 ">
-            <Button
-              text={type === "signup" ? "Sign up" : "Sign in"}
+            <button
+              type="button"
+              className={
+                loading
+                  ? "cursor-not-allowed opacity-50 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full font-bold"
+                  : "text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full font-bold"
+              }
               onClick={sendRequest}
-            />
+            >
+              {type === "signup" ? "Sign up" : "Sign in"}{" "}
+              {loading ? <Spinner /> : null}
+            </button>
           </div>
         </div>
       </div>

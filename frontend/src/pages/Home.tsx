@@ -12,23 +12,11 @@ export default function Home() {
           <nav className="">
             <ul className="flex justify-center space-x-4">
               <li>
-                <a href="/signup" className="hover:text-slate-600">
-                  Signup
-                </a>
-              </li>
-              <li>
-                <a href="/signin" className="hover:text-slate-600">
+                <a
+                  href="/signin"
+                  className="hover:text-slate-600 hover:border-b "
+                >
                   Signin
-                </a>
-              </li>
-              <li>
-                <a href="/blogs" className="hover:text-slate-600">
-                  Blogs
-                </a>
-              </li>
-              <li>
-                <a href="/publish" className="hover:text-slate-500">
-                  Publish
                 </a>
               </li>
             </ul>

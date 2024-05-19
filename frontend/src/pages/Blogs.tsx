@@ -1,6 +1,7 @@
 import AllBlogsSkeleton from "../components/AllBlogsSkeleton";
 import Appbar from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
+import RandomDate from "../components/RandomDate";
 import { useBlogs } from "../hooks";
 
 export default function Blogs() {
@@ -31,7 +32,7 @@ export default function Blogs() {
               authorName={blog.author.name || "Anonymous"}
               title={blog.title}
               content={blog.content}
-              publishedDate={" 23-Feb-2023 "}
+              publishedDate={<RandomDate />}
             />
           ))}
         </div>

@@ -3,11 +3,14 @@ import Appbar from "../components/Appbar";
 import { BACKEND_URL } from "../config";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 export default function Publish() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
   return (
     <div>
       <Appbar />
@@ -25,8 +28,14 @@ export default function Publish() {
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
         <button
-          className="mt-8 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          className={
+            loading
+              ? "cursor-not-allowed opacity-50 mt-8 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+              : "mt-8 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          }
           onClick={async () => {
+            setLoading(true);
+
             const response = await axios.post(
               `${BACKEND_URL}/api/v1/blog`,
               {
@@ -42,7 +51,7 @@ export default function Publish() {
             navigate(`/blog/${response.data.post}`);
           }}
         >
-          Publish
+          Publish {loading ? <Spinner /> : null}
         </button>
       </div>
     </div>
