@@ -1,4 +1,3 @@
-import React from "react";
 import AllBlogsSkeleton from "../components/AllBlogsSkeleton";
 import Appbar from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
