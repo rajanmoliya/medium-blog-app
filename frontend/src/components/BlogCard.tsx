@@ -17,25 +17,29 @@ export function BlogCard({
   publishedDate,
 }: BlogCardProps) {
   return (
-    <Link to={`/blog/${id}`}>
-      <div className=" p-2 w-screen max-w-screen-md cursor-pointer">
-        <div>
-          <Avatar name={authorName} />{" "}
-          <span className=" font-light">
-            {authorName.charAt(0).toUpperCase() + authorName.slice(1) ||
-              "Anonymous"}
-          </span>{" "}
-          &#183;{" "}
-          <span className=" text-slate-500 text-sm font-thin">
-            {publishedDate}
-          </span>
+    <Link
+      to={`/blog/${id}`}
+      className="block transform transition duration-300 hover:scale-105"
+    >
+      <div className="bg-white shadow-lg rounded-lg p-6 mb-6 w-screen max-w-screen-md cursor-pointer hover:shadow-2xl">
+        <div className="flex items-center mb-4">
+          <Avatar name={authorName} />
+          <div className="ml-3">
+            <span className="font-semibold text-gray-800">
+              {authorName.charAt(0).toUpperCase() + authorName.slice(1) ||
+                "Anonymous"}
+            </span>
+            <span className="text-gray-500 mx-2">&#183;</span>
+            <span className="text-gray-500 text-sm">{publishedDate}</span>
+          </div>
         </div>
-        <div className="text-xl font-bold py-2">{title}</div>
-        <div className="text-md ">{content.slice(0, 100) + "..."}</div>
-        <div className="text-slate-500 text-sm font-thin py-2">{`${Math.ceil(
+        <div className="text-2xl font-bold text-gray-900 mb-2">{title}</div>
+        <div className="text-gray-700 mb-4">
+          {content.slice(0, 100) + "..."}
+        </div>
+        <div className="text-gray-500 text-sm">{`${Math.ceil(
           content.length / 100
         )} minute(s) read`}</div>
-        <div className="border-b mt-2"></div>
       </div>
     </Link>
   );
@@ -43,8 +47,8 @@ export function BlogCard({
 
 export function Avatar({ name }: { name: string }) {
   return (
-    <div className="relative inline-flex items-center justify-center w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-      <span className="text-xs text-gray-600 dark:text-gray-300">
+    <div className="relative inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-700">
+      <span className="text-lg font-semibold text-gray-800 dark:text-gray-300">
         {name[0].toUpperCase()}
       </span>
     </div>

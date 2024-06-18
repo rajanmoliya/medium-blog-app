@@ -1,7 +1,7 @@
 export default function AllBlogsSkeleton() {
   return (
     <div>
-      <div className="p-2 w-screen max-w-screen-md cursor-pointer">
+      <div className="p-2 w-screen max-w-screen-md cursor-pointer ">
         <div className="flex items-center">
           <div className="h-8 w-8 mr-2 bg-gray-300 rounded-full"></div>
           <div className="flex flex-col">

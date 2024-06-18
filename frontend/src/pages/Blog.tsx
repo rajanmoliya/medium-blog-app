@@ -12,7 +12,9 @@ export default function Blog() {
     return (
       <div className="">
         <Appbar />
-        <BlogSkeleton />
+        <div className="bg-gradient-to-tl from-current via-slate-600 to-current h-screen">
+          <BlogSkeleton />
+        </div>
       </div>
     );
   return (

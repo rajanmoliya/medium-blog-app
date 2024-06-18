@@ -1,3 +1,4 @@
+import React from "react";
 import AllBlogsSkeleton from "../components/AllBlogsSkeleton";
 import Appbar from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
@@ -11,8 +12,8 @@ export default function Blogs() {
     return (
       <>
         <Appbar />
-        <div className="flex justify-center">
-          <div>
+        <div className="flex justify-center py-10 bg-gradient-to-tl from-current via-slate-600 to-current">
+          <div className="space-y-4">
             <AllBlogsSkeleton />
             <AllBlogsSkeleton />
             <AllBlogsSkeleton />
@@ -21,13 +22,15 @@ export default function Blogs() {
       </>
     );
   }
+
   return (
     <>
       <Appbar />
-      <div className="flex justify-center">
-        <div className="">
+      <div className="flex justify-center py-10 bg-gradient-to-tl from-current via-slate-600 to-current">
+        <div className="space-y-6 w-screen max-w-screen-md">
           {blogs.map((blog) => (
             <BlogCard
+              key={blog.id}
               id={blog.id}
               authorName={blog.author.name || "Anonymous"}
               title={blog.title}
