@@ -84,36 +84,75 @@ export default function Auth({ type }: { type: string }) {
             </div>
           )}
 
-          <div>
-            <label className="font-bold text-gray-700" htmlFor="email">
-              Email
-            </label>
-            <input
-              className="w-full p-3 border rounded-md bg-gray-50 mt-2"
-              placeholder="you@example.com"
-              type="email"
-              name="email"
-              id="email"
-              onChange={(e) =>
-                setPostInput({ ...postInput, email: e.target.value })
-              }
-            />
-          </div>
+          {type === "signup" && (
+            <>
+              <div>
+                <label className="font-bold text-gray-700" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className="w-full p-3 border rounded-md bg-gray-50 mt-2"
+                  placeholder="you@example.com"
+                  type="email"
+                  name="email"
+                  id="email"
+                  onChange={(e) =>
+                    setPostInput({ ...postInput, email: e.target.value })
+                  }
+                />
+              </div>
 
-          <div>
-            <label className="font-bold text-gray-700" htmlFor="password">
-              Password
-            </label>
-            <input
-              className="w-full p-3 border rounded-md bg-gray-50 mt-2"
-              type="password"
-              name="password"
-              id="password"
-              onChange={(e) =>
-                setPostInput({ ...postInput, password: e.target.value })
-              }
-            />
-          </div>
+              <div>
+                <label className="font-bold text-gray-700" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  className="w-full p-3 border rounded-md bg-gray-50 mt-2"
+                  type="password"
+                  name="password"
+                  id="password"
+                  onChange={(e) =>
+                    setPostInput({ ...postInput, password: e.target.value })
+                  }
+                />
+              </div>
+            </>
+          )}
+
+          {type === "signin" && (
+            <>
+              <div>
+                <label className="font-bold text-gray-700" htmlFor="email">
+                  Email <span className="text-cyan-700">(test@test.com)</span>
+                </label>
+                <input
+                  className="w-full p-3 border rounded-md bg-gray-50 mt-2"
+                  placeholder="you@example.com"
+                  type="email"
+                  name="email"
+                  id="email"
+                  onChange={(e) =>
+                    setPostInput({ ...postInput, email: e.target.value })
+                  }
+                />
+              </div>
+
+              <div>
+                <label className="font-bold text-gray-700" htmlFor="password">
+                  Password <span className="text-cyan-700">(12345678)</span>
+                </label>
+                <input
+                  className="w-full p-3 border rounded-md bg-gray-50 mt-2"
+                  type="password"
+                  name="password"
+                  id="password"
+                  onChange={(e) =>
+                    setPostInput({ ...postInput, password: e.target.value })
+                  }
+                />
+              </div>
+            </>
+          )}
           <div className="text-red-500 text-center">{errorMessage}</div>
           <div>
             <button
