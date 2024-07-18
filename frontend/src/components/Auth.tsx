@@ -123,7 +123,7 @@ export default function Auth({ type }: { type: string }) {
             <>
               <div>
                 <label className="font-bold text-gray-700" htmlFor="email">
-                  Email <span className="text-cyan-700">(test@test.com)</span>
+                  Email
                 </label>
                 <input
                   className="w-full p-3 border rounded-md bg-gray-50 mt-2"
@@ -135,11 +135,14 @@ export default function Auth({ type }: { type: string }) {
                     setPostInput({ ...postInput, email: e.target.value })
                   }
                 />
+                <span className="text-cyan-700">
+                  * <b>test@test.com </b> (For Testing)
+                </span>
               </div>
 
               <div>
                 <label className="font-bold text-gray-700" htmlFor="password">
-                  Password <span className="text-cyan-700">(12345678)</span>
+                  Password
                 </label>
                 <input
                   className="w-full p-3 border rounded-md bg-gray-50 mt-2"
@@ -150,6 +153,9 @@ export default function Auth({ type }: { type: string }) {
                     setPostInput({ ...postInput, password: e.target.value })
                   }
                 />
+                <span className="text-cyan-700">
+                  * <b>12345678 </b> (For Testing)
+                </span>
               </div>
             </>
           )}
